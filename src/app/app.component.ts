@@ -7,7 +7,7 @@ import { PatientService } from './patient.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   patients: Observable<Patient[]>;
