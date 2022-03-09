@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinicaniloangularapp": {
+      "hosting": {
+        "clinicaniloangularapp": [
+          "clinicaniloangularapp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinicaniloangularapp"
+  }
+}
