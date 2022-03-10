@@ -8,3 +8,12 @@ td {
   bottom: 100px;
   right: 100px;
 }
+
+::ng-deep .p-panel-header {
+  background-color: #673ab7 !important;
+}
+
+::ng-deep .p-panel-title {
+  color: white;
+  font-size: 2.6em;
+}
