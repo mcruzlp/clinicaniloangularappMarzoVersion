@@ -6,9 +6,16 @@
           "clinicaniloangularapp"
         ]
       }
+    },
+    "angular-63b44": {
+      "hosting": {
+        "clinicaniloangularapp": [
+          "angular-63b44"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "clinicaniloangularapp"
+    "default": "angular-63b44"
   }
 }

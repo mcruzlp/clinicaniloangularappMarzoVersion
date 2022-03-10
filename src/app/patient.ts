@@ -4,7 +4,7 @@ export interface Patient {
   patientLastName: string;
   patientBithDate: string;
   patientEmail: string;
-  patientTlfn: number;
+  patientTlfn: string;
   patientAdress: string;
   patientPrice: number;
 }

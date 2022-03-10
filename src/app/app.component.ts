@@ -13,17 +13,19 @@ export class AppComponent {
   patients: Observable<Patient[]>;
 
   patientForm = new FormGroup({
-    patientId: new FormControl(''),
+    patientId: new FormControl(),
+    patientDNI: new FormControl(''),
     patientName: new FormControl(''),
     patientLastName: new FormControl(''),
     patientBithDate: new FormControl(''),
     patientEmail: new FormControl(''),
     patientTlfn: new FormControl(0),
+    patientAdress: new FormControl(''),
     patientPrice: new FormControl(0),
   });
 
   formButtonText = 'Añadir Paciente';
-  displaypatientForm = false;
+  displayPatientForm = false;
   displayConfirmDelete = false;
   idForDeletion = '';
   descriptionForDeletion = '';
@@ -34,16 +36,19 @@ export class AppComponent {
 
   addPatient() {
     this.patientService.addPatient(this.patientForm.value);
-    this.patientForm.reset({ patientTlfn: 0, patientPrice: 0 });
+    this.patientForm.reset();
   }
 
   updatePatientStep1(id: string) {
+    this.displayPatientForm = true;
+
     this.patientService.getPatient(id).subscribe((data) => {
       this.patientForm.patchValue(data);
       console.log('data: ' + JSON.stringify(data));
     });
 
     this.formButtonText = 'Actualizar paciente';
+    this.patientForm.reset();
   }
 
   updatePatientStep2() {
@@ -56,7 +61,13 @@ export class AppComponent {
       ? this.addPatient()
       : this.updatePatientStep2();
 
-    this.displaypatientForm = false;
+    this.displayPatientForm = false;
+    this.patientForm.reset();
+  }
+
+  cancel() {
+    this.displayPatientForm = false;
+    this.patientForm.reset();
   }
 
   confirmDeletePatient(patient: Patient) {

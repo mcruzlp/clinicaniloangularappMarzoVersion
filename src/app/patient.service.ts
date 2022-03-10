@@ -18,7 +18,7 @@ import { Patient } from './patient';
 export class PatientService {
   constructor(private firestore: Firestore) {}
 
-  async addPatient(patient: Patient) {
+  public async addPatient(patient: Patient) {
     try {
       const docRef = await addDoc(
         collection(this.firestore, 'patients'),

@@ -2,12 +2,13 @@
   <p-table [value]="(patients | async)!" [paginator]="true" [rows]="7">
     <ng-template pTemplate="header">
       <tr>
-        <th>Código</th>
+        <th>DNI</th>
         <th>Nombre</th>
         <th>Apellidos</th>
         <th>Fecha de nacimiento</th>
         <th>Email</th>
         <th>Teléfono</th>
+        <th>Dirección</th>
         <th>Tarifa</th>
         <th></th>
         <th></th>
@@ -15,12 +16,13 @@
     </ng-template>
     <ng-template pTemplate="body" let-p>
       <tr>
-        <td>{{ p.patientId }}</td>
+        <td>{{ p.patientDNI }}</td>
         <td>{{ p.patientName }}</td>
         <td>{{ p.patientLastName }}</td>
         <td>{{ p.patientBithDate }}</td>
         <td>{{ p.patientEmail }}</td>
         <td>{{ p.patientTlfn }}</td>
+        <td>{{ p.patientAdress }}</td>
         <td>{{ p.patientPrice }}</td>
         <td>
           <button
@@ -47,15 +49,30 @@
   </p-table>
 
   <div class="add-button">
-    <p-speedDial (click)="displaypatientForm = true" buttonClassName="p-button-help"></p-speedDial>
+    <p-speedDial
+      (click)="displayPatientForm = true"
+      buttonClassName="p-button-help"
+    ></p-speedDial>
   </div>
 
   <!-- Form dialog-->
-  <p-dialog [(visible)]="displaypatientForm" [style]="{ width: '40vw' }">
+  <p-dialog [(visible)]="displayPatientForm" [style]="{ width: '40vw' }">
     <ng-template pTemplate="header">Paciente</ng-template>
 
     <form [formGroup]="patientForm" (ngSubmit)="formSubmit()">
       <div class="card">
+        
+        <div class="field">
+          <label for="patientDNI">DNI: </label>
+          <input
+            pInputText
+            id="patientDNI"
+            type="text"
+            formControlName="patientDNI"
+            class="inputfield w-full"
+          />
+        </div>
+
         <div class="field">
           <label for="patientName">Nombre: </label>
           <input
@@ -138,12 +155,12 @@
 
       <p-footer>
         <p-button
-          type="submit"
+          (click)="formSubmit()"
           [label]="formButtonText"
           styleClass="p-button-success"
         ></p-button>
         <p-button
-          (click)="displaypatientForm = false"
+          (click)="cancel()"
           label="Cancelar"
           styleClass="p-button-danger"
         ></p-button>
