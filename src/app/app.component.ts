@@ -24,7 +24,7 @@ export class AppComponent {
     patientPrice: new FormControl(0),
   });
 
-  formButtonText = 'Añadir Paciente';
+  formButtonText = 'Añadir paciente';
   displayPatientForm = false;
   displayConfirmDelete = false;
   idForDeletion = '';
@@ -44,7 +44,6 @@ export class AppComponent {
 
     this.patientService.getPatient(id).subscribe((data) => {
       this.patientForm.patchValue(data);
-      console.log('data: ' + JSON.stringify(data));
     });
 
     this.formButtonText = 'Actualizar paciente';
@@ -53,7 +52,6 @@ export class AppComponent {
 
   updatePatientStep2() {
     this.patientService.updatePatient(this.patientForm.value);
-    console.log('updatePatient');
   }
 
   formSubmit() {
@@ -62,6 +60,12 @@ export class AppComponent {
       : this.updatePatientStep2();
 
     this.displayPatientForm = false;
+    this.patientForm.reset();
+  }
+
+  buttonAddPatient() {
+    this.displayPatientForm = true;
+    this.formButtonText === 'Añadir paciente';
     this.patientForm.reset();
   }
 

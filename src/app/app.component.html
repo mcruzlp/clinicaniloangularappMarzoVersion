@@ -30,7 +30,6 @@
             type="button"
             icon="pi pi-pencil"
             class="p-button-rounded"
-            title="Actualizar paciente"
             (click)="updatePatientStep1(p.patientId)"
           ></button>
         </td>
@@ -40,7 +39,6 @@
             type="button"
             icon="pi pi-trash"
             class="p-button-rounded"
-            title="Delete patient"
             (click)="patientService.deletePatient(p.patientId)"
           ></button>
         </td>
@@ -49,10 +47,7 @@
   </p-table>
 
   <div class="add-button">
-    <p-speedDial
-      (click)="displayPatientForm = true"
-      buttonClassName="p-button-help"
-    ></p-speedDial>
+    <p-speedDial (click)="buttonAddPatient()"></p-speedDial>
   </div>
 
   <!-- Form dialog-->
@@ -61,7 +56,6 @@
 
     <form [formGroup]="patientForm" (ngSubmit)="formSubmit()">
       <div class="card">
-        
         <div class="field">
           <label for="patientDNI">DNI: </label>
           <input
