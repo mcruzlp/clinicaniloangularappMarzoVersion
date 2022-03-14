@@ -43,7 +43,7 @@ Charts: ``npm install chart.js --save``("scripts": [
 
 ## Captures
 <img width="360px" src="./readmeImages/crud.png">
-<img width="360px" src="./readmeImages/adds.png">
+<img width="360px" src="./readmeImages/add.png">
 <img width="360px" src="./readmeImages/edit.png">
 
 
