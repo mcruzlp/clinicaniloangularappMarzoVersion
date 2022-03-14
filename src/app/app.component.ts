@@ -38,6 +38,7 @@ export class AppComponent {
   }
 
   addPatient() {
+    this.formButtonText === 'Añadir paciente';
     this.patientService.addPatient(this.patientForm.value);
     this.patientForm.reset();
   }
