@@ -1,6 +1,8 @@
-# Clinicaniloangularapp
+<img width="360px" src="./angular-y-primeng.png">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+# ClinicaNiloAngularApp
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
 ## Development server
 
@@ -25,3 +27,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## PRIMENG
+This project use components from PrimeNG
+Run ``npm install primeng --save`` to install
+
+# PrimeNG Components
+Icons: ``npm install primeicons --save``
+Animations: ``npm install @angular/animations --save``
+VirtualScrolling: ``npm install @angular/cdk --save``
+Charts: ``npm install chart.js --save``("scripts": [
+    "../node_modules/chart.js/dist/Chart.js",
+],)
+
+
+## Captures
+<img width="360px" src="./capturas/01_main.png">
+<img width="360px" src="./capturas/02_citas.png">
+<img width="360px" src="./capturas/03_pacientes.png">
+<img width="360px" src="./capturas/04_mensajes.png">
+
+
+
