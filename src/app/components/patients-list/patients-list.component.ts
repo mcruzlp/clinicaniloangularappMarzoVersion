@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Patient } from './patient';
-import { PatientService } from './patient.service';
-/* import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api'; */
+import { Patient } from '../../patient';
+import { PatientService } from '../../patient.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-patients-list',
+  templateUrl: './patients-list.component.html',
+  styleUrls: ['./patients-list.component.scss'],
 })
-export class AppComponent {
-
+export class PatientsListComponent implements OnInit {
   patients: Observable<Patient[]>;
 
   patientForm = new FormGroup({
@@ -20,10 +17,10 @@ export class AppComponent {
     patientDNI: new FormControl(''),
     patientName: new FormControl(''),
     patientLastName: new FormControl(''),
-    patientAge: new FormControl(''),
+    patientBithDate: new FormControl(''),
     patientEmail: new FormControl(''),
     patientTlfn: new FormControl(0),
-    patientAddress: new FormControl(''),
+    patientAdress: new FormControl(''),
     patientPrice: new FormControl(0),
   });
 
@@ -36,6 +33,8 @@ export class AppComponent {
   constructor(public patientService: PatientService) {
     this.patients = this.patientService.getPatients();
   }
+
+  ngOnInit(): void {}
 
   addPatient() {
     this.patientService.addPatient(this.patientForm.value);
@@ -87,8 +86,4 @@ export class AppComponent {
     this.patientService.deletePatient(this.idForDeletion);
     this.displayConfirmDelete = false;
   }
-
-  /* createPdf(patient: Patient) {
-
-  } */
 }

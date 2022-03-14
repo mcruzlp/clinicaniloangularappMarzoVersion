@@ -1,11 +1,12 @@
 export interface Patient {
-  patientId:string
+  patientId: string;
   patientDNI: string;
   patientName: string;
   patientLastName: string;
-  patientBithDate: string;
+  /* patientBithDate: string; */
+  patientAge: number;
   patientEmail: string;
   patientTlfn: string;
-  patientAdress: string;
-  patientPrice: number;
+  patientAddress: string;
+  patientPrice: string;
 }
