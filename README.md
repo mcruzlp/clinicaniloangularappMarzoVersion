@@ -1,4 +1,4 @@
-<img width="360px" src="./angular-y-primeng.png">
+<img width="360px" src="./readmeImages/angular-y-primeng.png">
 
 # ClinicaNiloAngularApp
 
@@ -42,10 +42,9 @@ Charts: ``npm install chart.js --save``("scripts": [
 
 
 ## Captures
-<img width="360px" src="./capturas/01_main.png">
-<img width="360px" src="./capturas/02_citas.png">
-<img width="360px" src="./capturas/03_pacientes.png">
-<img width="360px" src="./capturas/04_mensajes.png">
+<img width="360px" src="./readmeImages/crud.png">
+<img width="360px" src="./readmeImages/adds.png">
+<img width="360px" src="./readmeImages/edit.png">
 
 
 
