@@ -1,7 +1,25 @@
 <p-panel header="Clinica Nilo" class="header">
+  <p-button
+    label="Pacientes"
+    icon="pi pi-users"
+    (click)="showPatients()"
+  ></p-button>
+
+  <p-button
+    label="Citas"
+    icon="pi pi-calendar"
+    (click)="showPatients()"
+  ></p-button>
+
+  <p-button
+    label="Facturas"
+    icon="pi pi-euro"
+    (click)="showPatients()"
+  ></p-button>
 </p-panel>
-<!-- <p-toast position="top-right"></p-toast>
- -->
+
+<!-- <p-toast position="top-right"></p-toast> -->
+
 <p-card>
   <p-button
     label="Añadir paciente"
@@ -42,7 +60,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-p>
-      <tr>
+      <tr [ngClass]="{ 'bg-age': +p.patientAge < 18 }">
         <td>{{ p.patientDNI }}</td>
         <td>{{ p.patientName }}</td>
         <td>{{ p.patientLastName }}</td>
@@ -196,7 +214,6 @@
 </p-dialog>
 
 <!-- Delete confirmation dialog -->
-
 <p-dialog [(visible)]="displayConfirmDelete">
   <div class="card">
     ¿Estás segura de que quieres borrar a este paciente

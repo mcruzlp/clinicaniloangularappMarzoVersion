@@ -12,7 +12,6 @@ import { MenuItem } from 'primeng/api'; */
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
   patients: Observable<Patient[]>;
 
   patientForm = new FormGroup({
@@ -92,4 +91,8 @@ export class AppComponent {
   /* createPdf(patient: Patient) {
 
   } */
+
+  showPatients() {
+    
+  }
 }

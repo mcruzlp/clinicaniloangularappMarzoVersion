@@ -1,1 +1,210 @@
-<p>patients-list works!</p>
+<p-card>
+  <p-button
+    label="Añadir paciente"
+    icon="pi pi-plus"
+    (click)="buttonAddPatient()"
+  ></p-button>
+
+  <p-divider></p-divider>
+
+  <p-table [value]="(patients | async)!" [paginator]="true" [rows]="7">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="patientDNI">
+          DNI <p-sortIcon field="patientDNI"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientName">
+          Nombre <p-sortIcon field="patientName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientLastName">
+          Apellidos <p-sortIcon field="patientLastName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientAge">
+          Edad <p-sortIcon field="patientAge"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientEmail">
+          Email <p-sortIcon field="patientEmail"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientTlfn">
+          Teléfono <p-sortIcon field="patientTlfn"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientAddress">
+          Dirección <p-sortIcon field="patientAddress"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientPrice">
+          Tarifa <p-sortIcon field="patientPrice"></p-sortIcon>
+        </th>
+        <!-- <th></th> -->
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-p>
+      <tr [ngClass]="{ 'bg-age': +p.patientAge < 18 }">
+        <td>{{ p.patientDNI }}</td>
+        <td>{{ p.patientName }}</td>
+        <td>{{ p.patientLastName }}</td>
+        <td>{{ p.patientAge }}</td>
+        <td>{{ p.patientEmail }}</td>
+        <td>{{ p.patientTlfn }}</td>
+        <td>{{ p.patientAddress }}</td>
+        <td>{{ p.patientPrice }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-download"
+            class="p-button-rounded"
+            (click)="createCheck(p.patientId)"
+          ></button>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded"
+            (click)="updatePatientStep1(p.patientId)"
+          ></button>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded"
+            (click)="patientService.deletePatient(p.patientId)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+<!-- Form dialog-->
+<p-dialog [(visible)]="displayPatientForm" [style]="{ width: '40vw' }">
+  <ng-template pTemplate="header">Paciente</ng-template>
+
+  <form [formGroup]="patientForm" (ngSubmit)="formSubmit()">
+    <div class="card">
+      <div class="field">
+        <label for="patientDNI">DNI: </label>
+        <input
+          pInputText
+          id="patientDNI"
+          type="text"
+          formControlName="patientDNI"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientName">Nombre: </label>
+        <input
+          pInputText
+          id="patientName"
+          type="text"
+          formControlName="patientName"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientLastName">Apellidos: </label>
+        <input
+          pInputText
+          id="patientLastName"
+          type="text"
+          formControlName="patientLastName"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientAge">Edad: </label>
+        <input
+          pInputText
+          id="patientAge"
+          formControlName="patientAge"
+          type="text"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientEmail">Email: </label>
+        <input
+          pInputText
+          id="patientEmail"
+          type="text"
+          formControlName="patientEmail"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientTlfn">Teléfono: </label>
+        <input
+          pInputText
+          id="patientTlfn"
+          formControlName="patientTlfn"
+          type="number"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientAddress">Dirección: </label>
+        <input
+          pInputText
+          id="patientAddress"
+          formControlName="patientAddress"
+          type="text"
+          class="inputfield w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="patientPrice">Tarifa: </label>
+        <input
+          pInputText
+          id="patientPrice"
+          formControlName="patientPrice"
+          type="number"
+          mode="currency"
+          currency="EUR"
+          class="inputfield w-full"
+        />
+      </div>
+    </div>
+
+    <p-footer>
+      <p-button
+        (click)="formSubmit()"
+        [label]="formButtonText"
+        styleClass="p-button-success"
+      ></p-button>
+      <p-button
+        (click)="cancel()"
+        label="Cancelar"
+        styleClass="p-button-danger"
+      ></p-button>
+    </p-footer>
+  </form>
+</p-dialog>
+
+<!-- Delete confirmation dialog -->
+<p-dialog [(visible)]="displayConfirmDelete">
+  <div class="card">
+    ¿Estás segura de que quieres borrar a este paciente
+    <b>{{ descriptionForDeletion }}</b
+    >?
+  </div>
+
+  <p-footer>
+    <p-button (click)="deletePatient()" label="Yes"> </p-button>
+
+    <p-button (click)="displayConfirmDelete = false" label="No"> </p-button>
+  </p-footer>
+</p-dialog>

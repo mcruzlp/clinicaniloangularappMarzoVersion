@@ -17,10 +17,10 @@ export class PatientsListComponent implements OnInit {
     patientDNI: new FormControl(''),
     patientName: new FormControl(''),
     patientLastName: new FormControl(''),
-    patientBithDate: new FormControl(''),
+    patientAge: new FormControl(''),
     patientEmail: new FormControl(''),
     patientTlfn: new FormControl(0),
-    patientAdress: new FormControl(''),
+    patientAddress: new FormControl(''),
     patientPrice: new FormControl(0),
   });
 
@@ -34,9 +34,8 @@ export class PatientsListComponent implements OnInit {
     this.patients = this.patientService.getPatients();
   }
 
-  ngOnInit(): void {}
-
   addPatient() {
+    this.formButtonText === 'Añadir paciente';
     this.patientService.addPatient(this.patientForm.value);
     this.patientForm.reset();
   }
@@ -69,6 +68,7 @@ export class PatientsListComponent implements OnInit {
     this.displayPatientForm = true;
     this.formButtonText === 'Añadir paciente';
     this.patientForm.reset();
+
   }
 
   cancel() {
@@ -85,5 +85,9 @@ export class PatientsListComponent implements OnInit {
   deletePatient() {
     this.patientService.deletePatient(this.idForDeletion);
     this.displayConfirmDelete = false;
+  }
+
+  createCheck(patient: Patient) {
+
   }
 }
